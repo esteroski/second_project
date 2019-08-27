@@ -18,15 +18,13 @@
       </div>
     <form action="/action_page.php">
       Ride Name:<br>
-      <input type="text"  id = "ridename" name="ridename" value="ridename">
+      <input type="text" id="ridename" value="ridename" placeholder="Ends">
       <br>
       <br>
-      Start From:<br>
-      <input type="text" name="from" id = "from" value="from">
+      <input type="text" id="from" value="From" placeholder="StartFrom">
       <br>
       <br>
-      Ends:<br>
-      <input type="text" name="ends" value="ends">
+      <input type="text" id="ends" value="Ends" placeholder="Ends">
       <textarea name="description" rows="10" cols="30">
         Description
       </textarea>
@@ -34,11 +32,11 @@
       <br>
       <h2>When</h2>
       Departure
-        <input type="time" name="departure" value="departure" id = "departure">
+        <input type="time" id="departure" value="Departure" placeholder="Departure">
       Estimated Arrival
-        <input type="time" name="estimated_arrival" id = "estimated_arrival" >
+        <input type="time" id="estimated_arrival" value="EstimatedArrival" placeholder="EstimatedArrival">
         <div class="days">
-          <select name="cars" size="4" multiple>
+          <select name="days" size="4" multiple>
             <option value="monday">Monday</option>
             <option value="tuesday">Tuesday</option>
             <option value="wednesday">Wednesday</option>
@@ -50,6 +48,6 @@
         </div>
 
         <a href="../Dashboard/dashboard.html">Cancel</a>
-        <button type="button" onclick="alert('Saved!')" name="save">Save</button>
+        <input type="submit" class="btn btn-success" value=" Save">
 </body>
 </html>

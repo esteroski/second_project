@@ -1,59 +1,119 @@
-/*is being declared variables necessaries for a good CRUD development
-variables: functionality (if is adding or editing), index, tbRides (getting stored data)
-*/
-$(function(){
 
-    var functionality = "A"; 
-    var index = -1; //selected index from the list
-    var tbRides = localStorage.getItem("tbRides");
-    tbRides = JSON.parse(tbRides); //converts into an object
+var dbRides = localStorage.getItem("dbRides"); //get data from localStorage
+dbRides = JSON.parse(dbRides); // Change an object
+if (dbRides === null) 
+    dbRides = [];
 
-        if(tbRides == null)
-        tbRides = [];
 
+
+//function for adding a ride
+function addRide () {
+    
+    var ride_data = JSON.stringify({
+        RideName : $("#ridename").val(),
+        StartFrom : $("#from").val(),
+        Ends : $("#ends").val(),
+        Departure : $("#departure").val(),
+        EstimatedArrival : $("estimated_arrival").val()
+    });
+
+    dbRides.push(ride_data); 
+    localStorage.setItem("dbRides", JSON.stringify(dbRides));
+
+
+
+    listRides();
+
+
+    return Alert(1);
+}
+
+
+
+function listRides(){
+    $("#tbRides").html(
+            "<thead>" +
+                "<tr>" +
+                    "<th> RideName </th>" +
+                    "<th> StartFrom </th>" +
+                    "<th> Ends </th>" +
+                    "<th> Departure </th>" +
+                    "<th> Estimated Arrival </th>" +
+                    "<th> </th>" +
+                    "<th>  </th>" +
+                "</tr>" +
+            "</thead>" +
+            "<tbody>" +
+            "</tbody>"
+    );
+
+    for (var i in dbRides) {
+        var d = JSON.parse(dbRides[i]);
+        $("#tbRides").append(
+                        "<tr>" +
+                            "<td>" + i + "</td>" +
+                            "<td>" + d.RideName + "</td>" +
+                            "<td>" + d.StartFrom + "</td>" +
+                            "<td>" + d.Ends + "</td>" +
+                            "<td>" + d.Departure + "</td>" +
+                            "<td>" + d.EstimatedArrival + "</td>" +
+                            "<td> <a id='"+ i +"' class='btnEdit' href='#'> <span class='glyphicon glyphicon-pencil'> </span>  </a> </td>" +
+                            "<td> <a id='" + i + "' class='btnDelete' href='#'> <span class='glyphicon glyphicon-trash'> </span> </a> </td>" +
+                        "</tr>"
+                           );
+    }
+
+}
+
+
+if (dbRides.length !== 0) {
+    listRides();
+} else {
+    $("#dbRides").append("<h2> You don't have any data recorded </h2>");
+}
+
+
+function deleteRide(e){
+    dbRides.splice(e, 1); 
+    localStorage.setItem("dbRides", JSON.stringify(dbRides));
+    return Alert(2);
+}
+
+function editRide() {
+    dbRides[index] = JSON.stringify({
+        RideName : $("#ridename").val(),
+        StartFrom : $("#from").val(),
+        Ends : $("#ends").val(),
+        Departure : $("#departure").val(),
+        EstimatedArrival : $("estimated_arrival").val()
+    });
+    localStorage.setItem("dbRides", JSON.stringify(dbRides));
+    operation = "A"; 
+    return true;
+
+}
+
+$(".btnDelete").bind("click", function(){
+    alert("Do you really want to delete this ride?");
+    index = $(this).attr("ide"); 
+    console.log(index);
+    console.log(this);
+    deleteRide(index); 
+    listRides();
+});
+
+$(".btnEdit").bind("click", function() {
+    alert("Do you want to edit it?");
+    index = $(this).attr("id");
+    console.log(index);
+    console.log(this);
+
+    var ridesData = JSON.parse(dbRides[index]);
+    $("#ridename").val(ridesData.RideName);
+    $("#from").val(ridesData.StartFrom);
+    $("#ends").val(ridesData.Ends);
+    $("#departure").val(ridesData.Departure);
+    $("#estimated_arrival").val(ridesData.EstimatedArrival);
 });
 
 
-//Function where is taking the neccesary values for creating a ride in the localStorga
-function addRide(){
-
-    var ride = JSON.stringify({
-
-        RideName : $("#ridename").val(),
-        From : $("#from").val(),
-        Ends : $("#ends").val(),
-        Departure : $("#departure").val(),
-        EstimatedArrival : $("#estimated_arrival").val()
-    });
-
-    tbRides.push(ride);
-    localStorage.setItem("tbRides", JSON.stringify(tbRides));
-    alert("The data was saved");
-    return true;
-}
-
-//Function where is taking the data (an specific index) that allows the user to modify it.
-function editRide(){
-
-    tbRides[index] = JSON.stringify({
-
-        RideName : $("#ridename").val(),
-        From : $("#from").val(),
-        Ends : $("#ends").val(),
-        Departure : $("#departure").val(),
-        EstimatedArrival : $("#estimated_arrival").val()
-    }); 
-    
-    localStorage.setItem("tbRides", JSON.stringify(tbRides));
-    alert("The data was edited.")
-    operation= "A"
-    return true;
-
-    }
-
-//Function that deletes the selected index.
-function deleteRide(){
-    tbRides.splice(index, 1);
-    localStorage.setItem("tbRides", JSON.stringify(tbRides));
-    alert("Ride deleted");
-}
