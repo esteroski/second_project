@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="edit.css">
+  </head>
+  <body>
+    <div class="pagination">
+        <ul>
+            <li><a class="active" href="../Dashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../Rides/settings.html">Settings</a></li>
+            <li><a href="../Searching/index.html">Log out</a></li>
+
+          </ul>
+      </div>
+    <form action="/action_page.php">
+      Ride Name:<br>
+      <input type="text" name="ridename" value="ridename">
+      <br>
+      <br>
+      Start From:<br>
+      <input type="text" name="from" value="from">
+      <br>
+      <br>
+      Ends:<br>
+      <input type="text" name="ends" value="ends">
+      <textarea name="description" rows="10" cols="30">
+        Description
+      </textarea>
+      <h2>When</h2>
+      Departure
+        <input type="time" name="departure" value="departure">
+      Estimated Arrival
+        <input type="time" name="departure" value="departure">
+        <div class="days">
+          <br>
+          <br>
+          <br>
+          <select id = "days "name="cars" size="20" multiple>
+            <option value="monday">Monday</option>
+            <option value="tuesday">Tuesday</option>
+            <option value="wednesday">Wednesday</option>
+            <option value="thursday">Thursday</option>
+            <option value="friday">Friday</option>
+            <option value="saturday">Saturday</option>
+            <option value="sunday">Sunday</option>
+         </select>
+        </div>
+
+        <a href="../Dashboard/dashboard.html">Cancel</a>
+        <button type="button" onclick="alert('Saved!')" name="save">Save</button>
+  </body>
+</html>

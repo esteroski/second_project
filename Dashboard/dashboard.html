@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+      <link rel="stylesheet" type="text/css" href="dashboard.css">
+  </head>
+  <body>
+    <div class="pagination">
+      <ul>
+          <li><a class="active" href="../Dashboard/dashboard.html">Dashboard</a></li>
+          <li><a href="../Rides/settings.html">Settings</a></li>
+          <li><a href="../Rides/add.html">Add ride</a></li>
+          <li><a href="../Searching/index.html">Log out</a></li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr>
+          <th>Name</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Actions</th>
+        </tr>
+        <tr id = "element">
+          <td>Brete</td>
+          <td>Barrio Los Ángeles</td>
+          <td>Zarcero</td>
+          <td>
+            <a href="../Rides/edit.html">
+              <button type="button" name="edit">Edit</button>
+          </td>
+          <td>
+                <input type="button" id = "delete" onclick="remove()" value= "Delete">
+          </td>
+        </tr>
+        <tr id = "element">
+          <td>Casa</td>
+          <td>Ciudad Quesada</td>
+          <td>San José</td>
+          <td>
+            <a href="../Rides/edit.html">
+                 <button type="button" name="edit">Edit</button>
+          </td>
+          <td>
+                <input type="button" id = "delete" onclick="remove()" value= "Delete">
+          </td>
+        </tr>
+        <tr id = "element">
+          <td> Chepe</td>
+          <td>Upala</td>
+          <td>Ciudad Quesada</td>
+          <td>
+            <a href="../Rides/edit.html">
+                <button type="button" name="edit">Edit</button>
+          </td>
+          <td>
+                <input type="button" id = "delete" onclick="remove()" value = "Delete">
+          </td>
+        </tr>
+    </table>
+  </body>
+  <script type="text/javascript" src="delete.js" > </script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="add.css">
+  </head>
+  <body>
+    <div class="pagination">
+        <ul>
+            <li><a class="active" href="../Dashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../Rides/settings.html">Settings</a></li>
+            <li><a href="../Searching/index.html">Log out</a></li>
+
+          </ul>
+      </div>
+    <form action="/action_page.php">
+      Full Name:<br>
+      <input type="text" name="fullname" value="fullname">
+      <br>
+      <br>
+      Speed Average:<br>
+      <input type="text" name="from" value="from">
+      <br>
+      <br>
+      About me:<br>
+      <input type="text" name="ends" value="">
+      <textarea name="description" rows="10" cols="30">
+        Something about me goes here
+      </textarea>
+      <br>
+      <br>
+        
+        <button type="button" onclick="alert('Saved!')" name="save">Save
+         
+        </button>
+        <a href="../Dashboard/dashboard.html">Cancel</a>
+  </body>
+</html>
