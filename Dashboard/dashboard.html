@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-      <link rel="stylesheet" type="text/css"  src="http://code.jquery.com/jquery-2.1.4.min.js" href="dashboard.css">
-  </head>
-  <body>
+      <link rel="stylesheet" type="text/css" href="dashboard.css">
+      <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+  <body class = "container">
     <div class="pagination">
       <ul>
           <li><a class="active" href="../Dashboard/dashboard.html">Dashboard</a></li>
@@ -15,9 +17,38 @@
         </ul>
     </div>
   
-    <table class="tbRides" id="tbRides">
+    <div class="rows ">
+        <h2> Rides <small>Management</small></h2>
+
+
+        <div class="col-md-6">
+            <hr>
+                <p class="modo"> <span class="glyphicon glyphicon-plus"></span>Add ride</p>
+            <form id="rides-form">
+                <input  class="form-control" type="text" id="ridename" placeholder="Ridename">
+                <input  class="form-control" type="text" id="from" placeholder="StartsFrom">
+                <input  class="form-control" type="text" id="ends" placeholder="Ends">
+                <input  class="form-control" type="text" id="description" placeholder="Description">
+                <input  class="form-control" type="time" id="departure" placeholder="Departure">
+                <input  class="form-control" type="time" id="estimated_arrival" placeholder="EstimatedArrival">
+
+                <br>
+                <input type="submit" class="btn btn-success" value="Save">
+            </form>
+            <br>
+            <br>
+        </div>
+        <div class="col-md-6">
+            <img style=" width:100%" src="carro.jpg" alt="" />
+        </div>
+
+    </div>
+
+
+    <br>
+    <br>
+    <table class="table" id="dbRides-list">
     </table>
   </body>
-  <script type="text/javascript" src="delete.js" > </script>
   <script type="text/javascript" src="rides.js" > </script>
 </html>
