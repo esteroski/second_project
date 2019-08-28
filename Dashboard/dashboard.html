@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
       <link rel="stylesheet" type="text/css" href="dashboard.css">
-      <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     </head>
   <body class = "container">
@@ -12,7 +12,6 @@
       <ul>
           <li><a class="active" href="../Dashboard/dashboard.html">Dashboard</a></li>
           <li><a href="../Rides/settings.html">Settings</a></li>
-          <li><a href="../Rides/add.html">Add ride</a></li>
           <li><a href="../Searching/index.html">Log out</a></li>
         </ul>
     </div>
@@ -23,7 +22,7 @@
 
         <div class="col-md-6">
             <hr>
-                <p class="modo"> <span class="glyphicon glyphicon-plus"></span>Add ride</p>
+                 <span class="glyphicon glyphicon-plus">Add ride</span>
             <form id="rides-form">
                 <input  class="form-control" type="text" id="ridename" placeholder="Ridename">
                 <input  class="form-control" type="text" id="from" placeholder="StartsFrom">
@@ -43,8 +42,6 @@
         </div>
 
     </div>
-
-
     <br>
     <br>
     <table class="table" id="dbRides-list">

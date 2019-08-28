@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="signup.css">
+    <link data-require="bootstrap@4.1.1" data-semver="4.1.1" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="signup.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
-        <form action="signup.html" method="post">
+        <form id="frmUsers">
                 <h1>Sign Up</h1>
                 <fieldset>
                     <legend><span class="number">1</span>Your basic info</legend>
                     <label for="name">Complete name:</label>
-                    <input type="text" id="name" name="user_name">
+                    <input type="text" id="name" name="name">
                     
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username">
@@ -23,16 +24,17 @@
                     <input type="number" id="phone" name="phone">
                     
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="user_password">
+                    <input type="password" id="password" name="password">
             
                     <label for="password">Repeat Password:</label>
-                    <input type="password" id="confirm_password" name="user_password">   
+                    <input type="password" id="confirm_password" name="confirm_password">   
                 </fieldset>
-                
-                <a href="../SignIn/signin.html">
-                  <button type="button" name="login">Register</button>
-              </a>
+                <div style="display:flex;justify-content:center;flex-direction:column;align-items: center">
+                        <input type="submit" value="Salvar" id="btnSalvar"/> 
+                        <a style="margin-top:20px" href="../SignIn/index.html">Cancelar</a>           
+                </div>            
               </form>
-            <script src="signup.js"></script>  
+
+  <script src="signup.js"></script>         
 </body>
 </html>

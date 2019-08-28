@@ -1,115 +1,87 @@
 
-var dbUsers = localStorage.getItem("dbRides"); //get data from localStorage
-dbUsers = JSON.parse(dbUsers); // Change an object
-if (dbUsers === null) 
-dbUsers = [];
+$(function(){
+    var operation = "A"; 
+    var indice_selecionado = -1; 
+    var tbUsers = localStorage.getItem("tbUsers");
+    tbUsers = JSON.parse(tbUsers); 
 
+		if(tbUsers == null){ 
+            tbUsers = [];
+		}
 
+		$("#frmUsers").on("submit",function(){
+			if(operation == "A"){
+			    return Adicionar(tbUsers);
+			}else{
+			    return Editar(tbUsers,indice_selecionado);
+			}
+		});
 
-//function for adding a ride
-function addUser () {
-    
-    var user_data = JSON.stringify({
-        Name : $("#name").val(),
-        Username : $("#username").val(),
-        Phone : $("#phone").val(),
-        Password : $("#password").val(),
-        ConfirmPassword : $("#confirm_password").val()
+		Listar(tbUsers);
+
+		$("#tblListar").on("click", ".btnEditar", function(){
+	    operation = "E";
+	    indice_selecionado = parseInt($(this).attr("alt"));
+			var cli = JSON.parse(tbUsers[indice_selecionado]);
+	    $("#name").val(cli.name);
+	    $("#username").val(cli.username);
+	    $("#phone").val(cli.phone);
+        $("#password").val(cli.password);
+        $("#confirm_password").val(cli.confirm_password);
+			$("#username").attr("readonly","readonly");
+		    $("#name").focus();
+		});
+
+		$("#tblListar").on("click", ".btnExcluir",function(){
+	    indice_selecionado = parseInt($(this).attr("alt"));
+			Excluir(tbUsers, indice_selecionado);
+	    Listar(tbUsers);
+		});
+});
+
+function Adicionar(tbUsers){
+
+		var usuario = JSON.stringify({
+        name   : $("#name").val(),
+        username     : $("#username").val(),
+        phone : $("#phone").val(),
+        password    : $("#password").val(),
+        confirm_password  : $("#confirm_password").val()
     });
-
-    dbUsers.push(user_data); 
-    localStorage.setItem("dbUsers", JSON.stringify(dbUsers));
-
-
-
-    listUsers();
-}
-
-
-
-function listUsers(){
-    $("#dbUsers").html(
-            "<thead>" +
-                "<tr>" +
-                    "<th> Name </th>" +
-                    "<th> Username </th>" +
-                    "<th> Phone </th>" +
-                    "<th> Password </th>" +
-                    "<th> ConfirmPassword </th>" +
-                    "<th> </th>" +
-                    "<th>  </th>" +
-                "</tr>" +
-            "</thead>" +
-            "<tbody>" +
-            "</tbody>"
-    );
-
-    for (var i in dbUsers) {
-        var d = JSON.parse(dbUsers[i]);
-        $("#dbUsers").append(
-                        "<tr>" +
-                            "<td>" + i + "</td>" +
-                            "<td>" + d.Name + "</td>" +
-                            "<td>" + d.Username + "</td>" +
-                            "<td>" + d.Phone + "</td>" +
-                            "<td>" + d.Password + "</td>" +
-                            "<td>" + d.ConfirmPassword + "</td>" +
-                            "<td> <a id='"+ i +"' class='btnEdit' href='#'> <span class='glyphicon glyphicon-pencil'> </span>  </a> </td>" +
-                            "<td> <a id='" + i + "' class='btnDelete' href='#'> <span class='glyphicon glyphicon-trash'> </span> </a> </td>" +
-                        "</tr>"
-                           );
-    }
-
-}
-
-
-if (dbUsers.length !== 0) {
-    listUsers();
-} else {
-    $("#dbUsers").append("<h2> You don't have any data recorded </h2>");
-}
-
-
-function deleteUser(e){
-    dbUsers.splice(e, 1); 
-    localStorage.setItem("dbUsers", JSON.stringify(dbUsers));
-    
-}
-
-function editUser() {
-    dbUsers[index] = JSON.stringify({
-        Nç : $("#name").val(),
-        Username : $("#username").val(),
-        Phone : $("#phone").val(),
-        Password : $("#password").val(),
-        ConfirmPassword : $("#confirm_password").val()
-    });
-    localStorage.setItem("dbUsers", JSON.stringify(dbUsers));
+    tbUsers.push(usuario);
+		console.log("tbUsers - " + tbUsers);
+    localStorage.setItem("tbUsers", JSON.stringify(tbUsers));
+    alert("Usuario Creado.");
+    location.href = '../SignIn/index.html';
     return true;
-
 }
 
-$(".btnDelete").bind("click", function(){
-    alert("Do you really want to delete this ride?");
-    index = $(this).attr("ide"); 
-    console.log(index);
-    console.log(this);
-    deleteUser(index); 
-    listUsers();
-});
 
-$(".btnEdit").bind("click", function() {
-    alert("Do you want to edit it?");
-    index = $(this).attr("id");
-    console.log(index);
-    console.log(this);
-
-    var usersData = JSON.parse(dbUsers[index]);
-    $("#name").val(usersData.Name);
-    $("#username").val(usersData.Username);
-    $("#phone").val(usersData.Phone);
-    $("#password").val(usersData.Password);
-    $("#confirm_password").val(usersData.ConfirmPassword);
-});
-
-
+function Listar(tbUsers){
+    $("#tblListar").html("");
+    $("#tblListar").html(
+        "<thead>"+
+        "   <tr>"+
+        "   <th></th>"+
+        "   <th>Name</th>"+
+        "   <th>Username</th>"+
+        "   <th>Phone</th>"+
+        "   <th>Password</th>"+
+        "   <th>Confirm password</th>"+
+        "   </tr>"+
+        "</thead>"+
+        "<tbody>"+
+        "</tbody>"
+        );
+    for(var i in tbUsers){
+        var cli = JSON.parse(tbUsers[i]);
+        $("#tblListar tbody").append("<tr>");
+        $("#tblListar tbody").append("<td><img src='localStorage/edit.png' alt='"+i+"'class='btnEditar'/><img src='localStorage/delete.png' alt='"+i+"' class='btnExcluir'/></td>");
+        $("#tblListar tbody").append("<td>"+cli.name+"</td>");
+        $("#tblListar tbody").append("<td>"+cli.username+"</td>");
+        $("#tblListar tbody").append("<td>"+cli.phone+"</td>");
+        $("#tblListar tbody").append("<td>"+cli.password+"</td>");
+        $("#tblListar tbody").append("<td>"+cli.confirm_password+"</td>");
+        $("#tblListar tbody").append("</tr>");
+    }
+}

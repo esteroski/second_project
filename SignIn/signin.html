@@ -5,26 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link data-require="bootstrap@4.1.1" data-semver="4.1.1" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="sign.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="sign.css">
 </head>
 <body>
-    <form action= "signin.html" method= "post">
+    <form id="frmCadastro">
         <h1>Sign In</h1>
         <fieldset>
-
             <label for= "username"> Username:</label>
             <input type="text" id="username" name= "username">
+
             <label for="password">Password:</label>
-            <input type="password" id = "password" name= "">
+            <input type="password" id = "password" name= "password">
         </fieldset>
+
         <a href="../Dashboard/dashboard.html">
-            <button type= "button" name = "login">Login</button>
+           <button type="submit" value="Login" id="btnSalvar">Login</button>
         </a>
-        <a href="../SignUp/signup.html">
+        <a href="../SignUp/index.html">
             <button type= "button" name= "signup">Not register yet?</button>
         </a>
     </form>
+    <script src="signin.js"></script>
 </body>
 </html>

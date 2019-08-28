@@ -4,11 +4,8 @@ dbRides = JSON.parse(dbRides); // Covertir a objeto
 if (dbRides === null) // Si no existe, creamos un array vacio.
     dbRides = [];
 
-
-
-
 function addRide () {
-    // Select data from the inputs.
+    // Select the inputs.
     var ridesData = JSON.stringify({
         Ridename : $("#ridename").val(),
         StartsFrom : $("#from").val(),
