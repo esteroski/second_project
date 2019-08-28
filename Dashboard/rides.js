@@ -7,12 +7,12 @@ if (dbRides === null) // Si no existe, creamos un array vacio.
 function addRide () {
     // Select the inputs.
     var ridesData = JSON.stringify({
-        Ridename : $("#ridename").val(),
-        StartsFrom : $("#from").val(),
-        Ends : $("#ends").val(),
-        Description : $("#description").val(),
-        Departure : $("#departure").val(),
-        EstimatedArrival : $("#estimated_arrival").val(),
+        ridename : $("#ridename").val(),
+        from : $("#from").val(),
+        ends : $("#ends").val(),
+        description : $("#description").val(),
+        departure : $("#departure").val(),
+        estimated_arrival : $("#estimated_arrival").val(),
     });
 
     dbRides.push(ridesData); // Save data in the array
@@ -78,12 +78,12 @@ function listRides (){
 
     function editRide() {
         dbRides[index] = JSON.stringify({
-            Ridename : $("#ridename").val(),
-            StartsFrom : $("#from").val(),
-            Ends : $("#ends").val(),
-            Description : $("#description").val(),
-            Departure : $("#departure").val(),
-            EstimatedArrival : $("#estimated_arrival").val(),
+            ridename : $("#ridename").val(),
+            from : $("#from").val(),
+            ends : $("#ends").val(),
+            description : $("#description").val(),
+            departure : $("#departure").val(),
+            estimated_arrival : $("#estimated_arrival").val(),
         });
         localStorage.setItem("dbRides", JSON.stringify(dbRides));
         operation = "A"; //return to the initil value of adding a ride
@@ -107,12 +107,12 @@ function listRides (){
         console.log(this);
         // put the values on the input for editing them
         var rideItem = JSON.parse(dbRides[index]);
-        $("#ridename").val(rideItem.Ridename);
-        $("#from").val(rideItem.StartsFrom);
-        $("#ends").val(rideItem.Ends);
-        $("#description").val(rideItem.Description);
-        $("#departure").val(rideItem.Departure);
-        $("#estimated_arrival").val(rideItem.EstimatedArrival);
+        $("#ridename").val(rideItem.ridename);
+        $("#from").val(rideItem.from);
+        $("#ends").val(rideItem.ends);
+        $("#description").val(rideItem.description);
+        $("#departure").val(rideItem.departure);
+        $("#estimated_arrival").val(rideItem.estimated_arrival);
     });
 
     

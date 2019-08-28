@@ -9,24 +9,23 @@
     <link rel="stylesheet" href="sign.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
-<body>
-    <form id="frmCadastro">
-        <h1>Sign In</h1>
-        <fieldset>
-            <label for= "username"> Username:</label>
-            <input type="text" id="username" name= "username">
+<body class="col-8 " style="display:flex;justify-content:center">
+    <div style="display:flex;justify-content: center;flex-direction:column;align-items: center;margin-left: 400px;margin-top:100px">
+            <h1 class="center-text">Sign In</h1>
+            <fieldset>
+                <label for= "username"> Username:</label>
+                <input type="text" id="username" name= "username">
+    
+                <label for="password">Password:</label>
+                <input type="password" id = "password" name= "password">
+           
+        <button id="btnSun">Say hello!</button>
+        <a href="../SignUp/index.html"><button type= "button" name= "signup">Not register yet?</button></a>
+    
+            </fieldset>
+    </div>
+   
 
-            <label for="password">Password:</label>
-            <input type="password" id = "password" name= "password">
-        </fieldset>
-
-        <a href="../Dashboard/dashboard.html">
-           <button type="submit" value="Login" id="btnSalvar">Login</button>
-        </a>
-        <a href="../SignUp/index.html">
-            <button type= "button" name= "signup">Not register yet?</button>
-        </a>
-    </form>
     <script src="signin.js"></script>
 </body>
 </html>

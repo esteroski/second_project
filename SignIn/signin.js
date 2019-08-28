@@ -1,15 +1,36 @@
 
 $(function(){
-    var operation = "A"; 
+    var operacao = "A";
     var indice_selecionado = -1; 
     var tbUsers = localStorage.getItem("tbUsers");
-    tbUsers = JSON.parse(tbUsers);
+    tbUsers = JSON.parse(tbUsers); 
 
 		if(tbUsers == null){ 
             tbUsers = [];
-		}
+        }
 
-		$("#frmUsers").on("submit",function(){	
+        function click_me() {
+            Listar(tbUsers);
+            var userN = document.getElementById('username').value;
+            var Pass = document.getElementById('password').value;
+            console.log(userN+Pass)
+            for(var i in tbUsers){
+                var cli = JSON.parse(tbUsers[i]);      
+               if(cli.username===userN && cli.password===Pass){
+                document.location.href = '../Dashboard/dashboard.html',true;
+                location.href = '../SignUp/index.html';
+                 alert('Bienvenido');
+                 return true;
+               }
+            
+
+            }
+		   return alert('Usuario o contraseña invalidos');
+
+          }
+          
+
+          $('#form_id').submit(function(){	
             Listar(tbUsers);
             var userN =$("#username").val();
             var Pass=$("#password").val();
@@ -19,7 +40,8 @@ $(function(){
               for(var i in tbUsers){
                 var cli = JSON.parse(tbUsers[i]);      
                if(cli.username===userN && cli.password===Pass){
-                location.replace = '../Dashboard/dashboard.html';
+                document.location.href = '../Dashboard/dashboard.html',true;
+                window.location.href = '../Dashboard/dashboard.html';
                  alert('Bienvenido');
                  return true;
                }
@@ -51,6 +73,45 @@ $(function(){
 		});
 });
 
+function Adicionar(tbUsers){
+
+		var usuario = JSON.stringify({
+        name   : $("#txtName").val(),
+        username     : $("#txtUsername").val(),
+        phone : $("#txtPhone").val(),
+        password    : $("#txtPassword").val(),
+        confirm_password  : $("#txtConfirmPassword").val()
+    });
+    tbUsers.push(usuario);
+		console.log("tbUsers - " + tbUsers);
+    localStorage.setItem("tbUsers", JSON.stringify(tbUsers));
+    alert("Registro adicionado.");
+    return true;
+}
+
+function Editar(tbUsers,indice_selecionado){
+    //location.href = 'index.html';
+    location.replace('index.html');
+    tbUsers[indice_selecionado] = JSON.stringify({
+        name   : $("#txtName").val(),
+        username     : $("#txtUsername").val(),
+        phone : $("#txtPhone").val(),
+        password    : $("#txtPassword").val(),
+        confirm_password    : $("#txtConfirmPassword").val()
+        });
+    localStorage.setItem("tbUsers", JSON.stringify(tbUsers));
+    alert("Informações editadas.")
+    operacao = "A"; 
+    return true;
+}
+
+function Excluir(tbUsers, indice_selecionado){
+    
+    tbUsers.splice(indice_selecionado, 1);
+    localStorage.setItem("tbUsers", JSON.stringify(tbUsers));
+    alert("Registro excluído.");
+
+}
 
 function Listar(tbUsers){
     $("#tblListar").html("");
@@ -78,4 +139,37 @@ function Listar(tbUsers){
         $("#tblListar tbody").append("<td>"+cli.Email+"</td>");
         $("#tblListar tbody").append("</tr>");
     }
+
+    function msg(){  
+        alert("Hello Javatpoint");  
+       }  
+
+       function DoSubmit(){
+           alert('hello')
+        document.myform.myinput.value = '1';
+        return true;
+        
+      }
+      $(document).ready(function() {
+        $('#btnSun').click(myFunction);
+      });
+      
+      function myFunction() {
+        Listar(tbUsers);
+        var userN = document.getElementById('username').value;
+        var Pass = document.getElementById('password').value;
+        
+        for(var i in tbUsers){
+            var cli = JSON.parse(tbUsers[i]);      
+           if(cli.username===userN && cli.password===Pass){
+            document.location.href = '../Dashboard/dashboard.html',true;
+            window.location.href = '../Dashboard/dashboard.html';
+             alert('Bienvenido');
+             return true;
+           }
+        
+
+        }
+       return alert('Usuario o contraseña invalidos');
+      }
 }
